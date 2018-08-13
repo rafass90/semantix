@@ -1,0 +1,188 @@
+Prezado candidato.
+
+Gostaríamos de fazer um teste que será usado para sabermos a sua proficiência
+nas habilidades para a vaga. O teste
+consiste em algumas perguntas e exercícios práticos sobre Spark e as respostas
+e códigos implementados devem ser
+armazenados no GitHub. O link do seu repositório deve ser compartilhado conosco
+ao final do teste.
+Quando usar alguma referência ou biblioteca externa, informe no arquivo README
+do seu projeto. Se tiver alguma
+dúvida, use o bom senso e se precisar deixe isso registrado na documentação do
+projeto.
+
+Qual o objetivo do comando cache em Spark?
+----------------------------------------------------------------------------------
+Cache é uma técnica de otimização para cálculos Spark. Eles ajudam a salvar resultados
+parciais intermediários para que possam ser reutilziados nos estágios subsequentes.
+Esses resultados provisórios como RDDs, são mantidos em memória.
+----------------------------------------------------------------------------------
+
+
+O mesmo código implementado em Spark é normalmente mais rápido que a
+implementação equivalente em
+MapReduce. Por quê?
+----------------------------------------------------------------------------------
+Apacha Spark faz uso de Resilient Distributed Datasets (RDDs), que implementa
+estrutura de dados em memória, que são utilizados para armazenar dados existentes
+entre nós de um cluster. Uma vez que as RDDs ficam em memória, os algorítimos
+podem interagir nesta área de RDD várias vezes de forma eficiente.
+----------------------------------------------------------------------------------
+
+
+Qual é a função do SparkContext ?
+----------------------------------------------------------------------------------
+A função do SkarkContext é conectar com um cluster Spark e pode ser usado para 
+criar RDDs.
+----------------------------------------------------------------------------------
+
+
+
+Explique com suas palavras o que é Resilient Distributed Datasets (RDD).
+----------------------------------------------------------------------------------
+Resilient Distributed Datasets é um conjunto de dados, são armazenados em dados 
+particionados, são distribuidos em várias maquinas, 
+----------------------------------------------------------------------------------
+
+
+GroupByKey é menos eficiente que reduceByKey em grandes dataset. Por quê?
+----------------------------------------------------------------------------------
+A função GroupByKey possue um alto grau de dificuldade para o otimizador.
+O reduceByKey funciona quando os tipos são os mesmos, ou o aggregateByKey,
+que não requer que os tipos sejam os mesmos. Dessa forma, é possível permitir
+que o Spark encaminhe a chave e faça uma redução da lista. A utilização de
+partições determinísticas divide os dados e o trabalho, permite joins mais
+rápidos, e ainda é possível fazer pesquisas.
+----------------------------------------------------------------------------------
+
+
+Este documento é confidencial e não pode ser distribuído, copiado em parte ou
+na sua totalidade
+
+Explique o que o código Scala abaixo faz.
+
+val textFile = sc . textFile ( "hdfs://..." )
+val counts = textFile . flatMap ( line => line . split ( " " ))
+. map ( word => ( word , 1 ))
+. reduceByKey ( _ + _ )
+counts . saveAsTextFile ( "hdfs://..." )
+----------------------------------------------------------------------------------
+O código faz a leitura dos dados, cria uma lista fazendo split por espaço,
+conta as palavras repetidas e cria a resposta com o formato ('PALAVRA', QUANTIDADE)
+----------------------------------------------------------------------------------
+
+
+HTTP requests to the NASA Kennedy Space Center WWW server
+Fonte oficial do dateset : http://ita.ee.lbl.gov/html/contrib/NASA-HTTP.html
+Dados :
+● Jul 01 to Jul 31, ASCII format, 20.7 MB gzip compressed , 205.2 MB.
+● Aug 04 to Aug 31, ASCII format, 21.8 MB gzip compressed , 167.8 MB.
+Sobre o dataset : Esses dois conjuntos de dados possuem todas as requisições
+HTTP para o servidor da NASA Kennedy
+Space Center WWW na Flórida para um período específico.
+Os logs estão em arquivos ASCII com uma linha por requisição com as seguintes
+colunas:
+● Host fazendo a requisição . Um hostname quando possível, caso contrário o
+endereço de internet se o nome
+não puder ser identificado.
+● Timestamp no formato "DIA/MÊS/ANO:HH:MM:SS TIMEZONE"
+● Requisição (entre aspas)
+● Código do retorno HTTP
+● Total de bytes retornados
+
+Questões
+
+Responda as seguintes questões devem ser desenvolvidas em Spark utilizando a
+sua linguagem de preferência.
+
+1. Número de hosts únicos.
+----------------------------------------------------------------------------------
+Unique Hosts: 152697
+----------------------------------------------------------------------------------
+
+2. O total de erros 404.
+----------------------------------------------------------------------------------
+Total 404 error: 22228
+----------------------------------------------------------------------------------
+
+3. Os 5 URLs que mais causaram erro 404.
+----------------------------------------------------------------------------------
+('hoohoo.ncsa.uiuc.edu', 251)
+('piweba3y.prodigy.com', 161)
+('jbiagioni.npt.nuwc.navy.mil', 132)
+('piweba1y.prodigy.com', 119)
+('www-d4.proxy.aol.com', 95)
+----------------------------------------------------------------------------------
+
+4. Quantidade de erros 404 por dia.
+----------------------------------------------------------------------------------
+{  
+   '01/Aug/1995':268,
+   '03/Aug/1995':331,
+   '04/Aug/1995':382,
+   '05/Aug/1995':258,
+   '06/Aug/1995':394,
+   '07/Aug/1995':572,
+   '08/Aug/1995':430,
+   '09/Aug/1995':329,
+   '10/Aug/1995':352,
+   '11/Aug/1995':307,
+   '12/Aug/1995':227,
+   '13/Aug/1995':251,
+   '14/Aug/1995':326,
+   '15/Aug/1995':372,
+   '16/Aug/1995':307,
+   '17/Aug/1995':307,
+   '18/Aug/1995':301,
+   '19/Aug/1995':222,
+   '20/Aug/1995':338,
+   '21/Aug/1995':342,
+   '22/Aug/1995':323,
+   '23/Aug/1995':407,
+   '24/Aug/1995':451,
+   '25/Aug/1995':462,
+   '26/Aug/1995':387,
+   '27/Aug/1995':388,
+   '28/Aug/1995':440,
+   '29/Aug/1995':452,
+   '30/Aug/1995':610,
+   '31/Aug/1995':565,
+   '01/Jul/1995':319,
+   '02/Jul/1995':292,
+   '03/Jul/1995':476,
+   '04/Jul/1995':359,
+   '05/Jul/1995':497,
+   '06/Jul/1995':640,
+   '07/Jul/1995':571,
+   '08/Jul/1995':302,
+   '09/Jul/1995':348,
+   '10/Jul/1995':398,
+   '11/Jul/1995':472,
+   '12/Jul/1995':472,
+   '13/Jul/1995':536,
+   '14/Jul/1995':415,
+   '15/Jul/1995':255,
+   '16/Jul/1995':257,
+   '17/Jul/1995':407,
+   '18/Jul/1995':466,
+   '19/Jul/1995':642,
+   '20/Jul/1995':463,
+   '21/Jul/1995':371,
+   '22/Jul/1995':211,
+   '23/Jul/1995':260,
+   '24/Jul/1995':358,
+   '25/Jul/1995':498,
+   '26/Jul/1995':362,
+   '27/Jul/1995':370,
+   '28/Jul/1995':109
+}
+----------------------------------------------------------------------------------
+
+5. O total de bytes retornados.
+----------------------------------------------------------------------------------
+
+Total bytes: 65524314915
+----------------------------------------------------------------------------------
+
+Este documento é confidencial e não pode ser distribuído, copiado em parte ou
+na sua totalidade.
